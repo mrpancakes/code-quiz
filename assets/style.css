@@ -24,8 +24,16 @@ button {
 }
 
 button:hover{
-cursor: pointer;
-background-color: #58e3dc;
+    cursor: pointer;
+    background-color: #58e3dc;
+}
+
+button:focus {
+    outline:0;
+}
+
+button:active {
+    background-color: #21b0a9;
 }
 
 .hidden {
