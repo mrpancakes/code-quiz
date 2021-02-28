@@ -1,0 +1,37 @@
+body {
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 4rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+button {
+    background-color: #39cec7;
+    padding: 15px;
+    border-radius: 50px;
+    border: solid 2px #178580;
+}
+
+button:hover{
+cursor: pointer;
+background-color: #58e3dc;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
