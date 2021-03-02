@@ -13,6 +13,7 @@
 <body>
     <header>
         <div class="high-scores">View High Scores</div>
+        <div class="" id="feedback"></div>
         <div class="timer">Time Left: <span id="timer">200 seconds</span></div>
     </header>
 
@@ -24,8 +25,17 @@
     </main>
 
     <section class="hidden" id="quiz">
-        <h2 id="question-title">test</h2>
+        <h2 id="question-title"></h2>
         <div id="choices"></div>
+    </section>
+
+    <section class="hidden" id="submit-score">
+        <h1>Done! Here's how you did:</h1>
+        <div class="score"><span id="final-score"></span>/100</div>
+        <div class="submit-score">
+            <input type="text" id="initials" name="initials" placeholder="Insert initials" value="" maxlength="3">
+            <button>Submit Score</button>
+        </div>
     </section>
 
 </body>

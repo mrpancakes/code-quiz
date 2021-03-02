@@ -3,17 +3,19 @@ body {
     margin: auto;
     margin-top: 10px;
     text-align: center;
-    line-height: 4rem;
+    line-height: 2rem;
+    font-size: 1.2rem;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin: 40px;
 }
 
 h1 {
     font-size: 3rem;
+    margin-bottom: 20px;
 }
 
 button {
@@ -21,6 +23,7 @@ button {
     padding: 15px;
     border-radius: 50px;
     border: solid 2px #178580;
+    margin: 20px;
 }
 
 button:hover{
@@ -36,6 +39,28 @@ button:active {
     background-color: #21b0a9;
 }
 
+#question-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.correct {
+    color: white;
+    background-color: rgb(19, 133, 19);
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.incorrect {
+    color: white;
+    background-color: rgb(184, 65, 65);
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 5px;
+    
+}
+
 .hidden {
     display: none;
 }
@@ -43,3 +68,26 @@ button:active {
 .visible {
     display: block;
 }
+
+#home-screen, #quiz {
+    margin-top: 80px;
+}
+
+.score {
+    font-size: 3rem;
+    padding-top: 20px;
+}
+
+.submit-score {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+input {
+    height: 3rem;
+    font-size: 2rem;
+    width: 200px;
+    margin-top: 20px;
+}
+

@@ -1,10 +1,19 @@
+// DOM Elements
 let timerEl = document.querySelector("#timer");
 let homeScreen = document.querySelector("#home-screen");
 let startButton = document.querySelector("#start-quiz");
 let quizQuestions = document.querySelector("#quiz");
+let titleEl = document.querySelector("#question-title");
+let choicesEl = document.querySelector("#choices");
+let questionEl = document.querySelector("#choices");
+let feedbackEl = document.querySelector("#feedback");
+let finalScore = document.querySelector("#final-score")
+let submitScore = document.querySelector("#submit-score");
 
-let timeLeft = 199; // Starting amount of time when quiz begins
-let currentQuestionIndex = 0;
+
+let timeLeft = 10; // Starting amount of time when quiz begins
+let currentQuestionIndex = 0; // starting point for which object in the Questions array we'll display at the start of the quiz, Referenced in getQuestion function
+let score = 0;
 
 startButton.addEventListener("click", startQuiz); // Event listener for Start Quiz buttons
 
@@ -23,6 +32,9 @@ function countdown(){
             // call some other function, maybe the "game over" function
         }
    }, 1000)
+   if (timeLeft === 0){
+       endQuiz();
+   }
 }
 
 // Use this to cycle through and display the questions with answers. Should hide the "main" section of the page and show the quiz questions
@@ -32,16 +44,73 @@ function startQuiz(){
 
     countdown(); 
 
-    getQuestion ();
+    getQuestion();
+
 } 
 
 
 function getQuestion(){
-    let currentQuestion = questions[currentQuestionIndex];
-    let titleEl = document.querySelector("#question-title");
-    let questionEl = document.querySelector("#choices");
-    titleEl.textContent = currentQuestion.title;
-    questionEl.textContent = currentQuestion.choices;
+    let currentQuestion = questions[currentQuestionIndex]; 
+    titleEl.textContent = currentQuestion.title; // Sets the title of the question
+
+    choicesEl.innerHTML= " "; // Reset old choices
+
+    currentQuestion.choices.forEach(choice => {
+        let choiceNode = document.createElement("button");
+       
+        choiceNode.setAttribute("value", choice);
+
+        choiceNode.textContent = choice;
+
+        choiceNode.onclick = questionClick;
+
+        choicesEl.appendChild(choiceNode); // display answer choices on the page
+
+        console.log(score);
+    })
+
+}
+
+function questionClick(){
+
+    if (this.value !== questions[currentQuestionIndex].answer){
+        timeLeft -= 10;
+
+        if (timeLeft <= 0 ) {
+            timeLeft = 0;
+        }
+
+        timerEl.textContent = timeLeft;
+        feedbackEl.setAttribute("class", "incorrect");
+        feedbackEl.textContent = "Incorrect";
+        
+    } else {
+        feedbackEl.setAttribute("class", "correct");
+        feedbackEl.textContent = "Correct!";
+        score += 20;
+    }
+
+    setTimeout(function() {
+        feedbackEl.setAttribute("class", "");
+        feedbackEl.textContent = "";
+    }, 1000);
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex === questions.length) {
+        endQuiz();
+    } else {
+        getQuestion();
+    }
+
+}
+
+function endQuiz () {
+    timeLeft = 0;
+    finalScore.textContent = `${score}`;
+    quizQuestions.setAttribute("class", "hidden");
+    submitScore.setAttribute("class", "visisble");
+
 
 }
 
@@ -55,7 +124,7 @@ let questions = [
         answer: "let myArr = [];"
     },
     {
-        title: "To deterime hwo many characters are in a string, you add ______ to the end of your string/variable.",
+        title: "To determine how many characters are in a string, you add ______ to the end of your string/variable.",
         choices: [".characterCounter", ".length()", ".string", ".length"],
         answer: ".length"
     },
