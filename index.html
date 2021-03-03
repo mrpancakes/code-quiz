@@ -12,9 +12,8 @@
 
 <body>
     <header>
-        <div class="high-scores">View High Scores</div>
-        <div class="" id="feedback"></div>
-        <div class="timer">Time Left: <span id="timer">200 seconds</span></div>
+        <div>View High Scores</div>
+        <div>Time Left: <span id="timer">100 seconds</span></div>
     </header>
 
     <main class="visible" id = "home-screen">
@@ -27,14 +26,15 @@
     <section class="hidden" id="quiz">
         <h2 id="question-title"></h2>
         <div id="choices"></div>
+        <div class="" id="feedback"></div>
     </section>
 
-    <section class="hidden" id="submit-score">
+    <section class="hidden" id="quiz-complete">
         <h1>Done! Here's how you did:</h1>
         <div class="score"><span id="final-score"></span>/100</div>
         <div class="submit-score">
             <input type="text" id="initials" name="initials" placeholder="Insert initials" value="" maxlength="3">
-            <button>Submit Score</button>
+            <button id="submit">Submit Score</button>
         </div>
     </section>
 

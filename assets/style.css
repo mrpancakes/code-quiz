@@ -13,6 +13,12 @@ header {
     margin: 40px;
 }
 
+header#high-scores{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px;
+}
+
 h1 {
     font-size: 3rem;
     margin-bottom: 20px;
@@ -39,10 +45,13 @@ button:active {
     background-color: #21b0a9;
 }
 
+
+
 #question-title {
     font-size: 1.5rem;
     margin-bottom: 30px;
 }
+
 
 .correct {
     color: white;
@@ -91,3 +100,15 @@ input {
     margin-top: 20px;
 }
 
+.feedback {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+#quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

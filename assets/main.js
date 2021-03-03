@@ -7,15 +7,22 @@ let titleEl = document.querySelector("#question-title");
 let choicesEl = document.querySelector("#choices");
 let questionEl = document.querySelector("#choices");
 let feedbackEl = document.querySelector("#feedback");
-let finalScore = document.querySelector("#final-score")
-let submitScore = document.querySelector("#submit-score");
+let quizComplete = document.querySelector("#quiz-complete");
+let finalScore = document.querySelector("#final-score");
+let initials = document.querySelector("#initials");
+let submitButton = document.querySelector("#submit");
+let scoreList = document.querySelector("#score-list");
 
 
-let timeLeft = 10; // Starting amount of time when quiz begins
+// Starting variables 
+let timeLeft = 5; // Starting amount of time when quiz begins
 let currentQuestionIndex = 0; // starting point for which object in the Questions array we'll display at the start of the quiz, Referenced in getQuestion function
 let score = 0;
+let highScores = [];
 
 startButton.addEventListener("click", startQuiz); // Event listener for Start Quiz buttons
+
+submitButton.addEventListener("click",submitScore);
 
 // Countdown timer function
 function countdown(){
@@ -33,8 +40,8 @@ function countdown(){
         }
    }, 1000)
    if (timeLeft === 0){
-       endQuiz();
-   }
+    endQuiz();
+}
 }
 
 // Use this to cycle through and display the questions with answers. Should hide the "main" section of the page and show the quiz questions
@@ -98,6 +105,7 @@ function questionClick(){
     currentQuestionIndex++;
 
     if (currentQuestionIndex === questions.length) {
+        quizQuestions.setAttribute("style", "display: none;");
         endQuiz();
     } else {
         getQuestion();
@@ -105,13 +113,42 @@ function questionClick(){
 
 }
 
-function endQuiz () {
+function endQuiz() {
     timeLeft = 0;
     finalScore.textContent = `${score}`;
+    finalScore.setAttribute("data-score", finalScore);
     quizQuestions.setAttribute("class", "hidden");
-    submitScore.setAttribute("class", "visisble");
+    quizComplete.setAttribute("class", "visisble");
+
+}
+
+function submitScore(){
+    console.log(`${initials.value} | ${score}/100`);
+    location.href = "/high-scores.html";
+
+    let personScore = {
+    initials: initials.value,
+    score: score
+    }
+
+    localStorage.setItem("Score Submission", JSON.stringify(personScore));
+}
 
 
+
+function renderScores(){
+    
+    scoreList.innerHTML="";
+
+    for (let i = 0; i < highScores.length; i++){
+        let score = highScores[i];
+
+        let li = document.createElement("li");
+        li.textContent = score;
+        li.setAttribute("data-index", i);
+
+        scoreList.appendChild(li);
+    }
 }
 
 
