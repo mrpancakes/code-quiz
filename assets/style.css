@@ -21,7 +21,7 @@ header#high-scores{
 
 h1 {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 button {
@@ -45,13 +45,13 @@ button:active {
     background-color: #21b0a9;
 }
 
-
-
-#question-title {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+.hidden {
+    display: none;
 }
 
+.visible {
+    display: block;
+}
 
 .correct {
     color: white;
@@ -70,12 +70,16 @@ button:active {
     
 }
 
-.hidden {
-    display: none;
+li {
+    font-size: 1.8rem;
+    padding: 18px;
 }
 
-.visible {
-    display: block;
+li:nth-child(odd) {
+    background-color: #B6CEC7;
+}
+li:nth-child(even) {
+    background-color: #86A3C3
 }
 
 #home-screen, #quiz {
@@ -111,4 +115,9 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#question-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
 }

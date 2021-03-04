@@ -11,60 +11,56 @@ let quizComplete = document.querySelector("#quiz-complete");
 let finalScore = document.querySelector("#final-score");
 let initials = document.querySelector("#initials");
 let submitButton = document.querySelector("#submit");
+let highScores = document.querySelector("#high-scores")
 let scoreList = document.querySelector("#score-list");
 
 
 // Starting variables 
-let timeLeft = 5; // Starting amount of time when quiz begins
+let timeLeft = 89; // Starting amount of time when quiz begins
 let currentQuestionIndex = 0; // starting point for which object in the Questions array we'll display at the start of the quiz, Referenced in getQuestion function
 let score = 0;
-let highScores = [];
+let scoresArray = [];
 
-startButton.addEventListener("click", startQuiz); // Event listener for Start Quiz buttons
-
-submitButton.addEventListener("click",submitScore);
+// Event listeners
+startButton.addEventListener("click", startQuiz);
+submitButton.addEventListener("click", submitScore);
 
 // Countdown timer function
-function countdown(){
-   let timeInterval = setInterval(function(){
+function countdown() {
+    let timeInterval = setInterval(function () {
         if (timeLeft > 1) {
             timerEl.textContent = `${timeLeft} seconds`;
             timeLeft--;
-        } else if (timeLeft === 1){
+        } else if (timeLeft === 1) {
             timerEl.textContent = `${timeLeft} second`;
             timeLeft--;
         } else {
             timerEl.innerHTML = "<strong>0 seconds</strong>";
             clearInterval(timeInterval);
-            // call some other function, maybe the "game over" function
+            endQuiz(); // call some other function, maybe the "game over" function
         }
-   }, 1000)
-   if (timeLeft === 0){
-    endQuiz();
-}
+    }, 1000)
 }
 
 // Use this to cycle through and display the questions with answers. Should hide the "main" section of the page and show the quiz questions
-function startQuiz(){
+function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
 
-    countdown(); 
-
+    countdown();
     getQuestion();
 
-} 
+}
 
-
-function getQuestion(){
-    let currentQuestion = questions[currentQuestionIndex]; 
+function getQuestion() {
+    let currentQuestion = questions[currentQuestionIndex];
     titleEl.textContent = currentQuestion.title; // Sets the title of the question
 
-    choicesEl.innerHTML= " "; // Reset old choices
+    choicesEl.innerHTML = " "; // Reset old choices
 
     currentQuestion.choices.forEach(choice => {
         let choiceNode = document.createElement("button");
-       
+
         choiceNode.setAttribute("value", choice);
 
         choiceNode.textContent = choice;
@@ -78,26 +74,26 @@ function getQuestion(){
 
 }
 
-function questionClick(){
+function questionClick() {
 
-    if (this.value !== questions[currentQuestionIndex].answer){
+    if (this.value !== questions[currentQuestionIndex].answer) {
         timeLeft -= 10;
 
-        if (timeLeft <= 0 ) {
+        if (timeLeft <= 0) {
             timeLeft = 0;
         }
 
         timerEl.textContent = timeLeft;
         feedbackEl.setAttribute("class", "incorrect");
         feedbackEl.textContent = "Incorrect";
-        
+
     } else {
         feedbackEl.setAttribute("class", "correct");
         feedbackEl.textContent = "Correct!";
         score += 20;
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
         feedbackEl.setAttribute("class", "");
         feedbackEl.textContent = "";
     }, 1000);
@@ -105,7 +101,6 @@ function questionClick(){
     currentQuestionIndex++;
 
     if (currentQuestionIndex === questions.length) {
-        quizQuestions.setAttribute("style", "display: none;");
         endQuiz();
     } else {
         getQuestion();
@@ -117,40 +112,55 @@ function endQuiz() {
     timeLeft = 0;
     finalScore.textContent = `${score}`;
     finalScore.setAttribute("data-score", finalScore);
-    quizQuestions.setAttribute("class", "hidden");
+    quizQuestions.setAttribute("style", "display: none;");
     quizComplete.setAttribute("class", "visisble");
 
 }
 
-function submitScore(){
-    console.log(`${initials.value} | ${score}/100`);
-    location.href = "/high-scores.html";
+function submitScore() {
 
     let personScore = {
-    initials: initials.value,
-    score: score
+        initials: initials.value.toUpperCase().trim(),
+        score: score
     }
 
-    localStorage.setItem("Score Submission", JSON.stringify(personScore));
+    if (personScore.initials === "") {
+        return;
+    }
+    if (JSON.parse(localStorage.getItem("Scores"))) {
+        scoresArray = JSON.parse(localStorage.getItem("Scores"));
+    }
+    scoresArray.push(personScore);
+
+    quizComplete.setAttribute("class", "hidden");
+    highScores.setAttribute("class", "visible");
+    storeScores();
+
+    console.log(scoresArray);
 }
 
+function renderScores() {
 
-
-function renderScores(){
-    
-    scoreList.innerHTML="";
-
-    for (let i = 0; i < highScores.length; i++){
-        let score = highScores[i];
-
+    scoreList.innerHTML = "";
+    console.log(scoresArray);
+    for (let i = 0; i < scoresArray.length; i++) {
         let li = document.createElement("li");
-        li.textContent = score;
+        li.textContent = `${scoresArray[i].initials} ${scoresArray[i].score}`;
         li.setAttribute("data-index", i);
-
         scoreList.appendChild(li);
     }
 }
 
+function init() {
+    if (JSON.parse(localStorage.getItem("Scores"))) {
+        scoresArray = JSON.parse(localStorage.getItem("Scores"));
+    }
+}
+
+function storeScores() {
+    localStorage.setItem("Scores", JSON.stringify(scoresArray));
+    renderScores();
+}
 
 
 // Array of questions/answers
@@ -182,6 +192,4 @@ let questions = [
     }
 ]
 
-
-
-
+init();
