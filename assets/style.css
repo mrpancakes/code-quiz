@@ -24,17 +24,19 @@ h1 {
     margin-bottom: 40px;
 }
 
+
+
 button {
-    background-color: #39cec7;
+    background-color: #a4e0dd;
     padding: 15px;
     border-radius: 50px;
-    border: solid 2px #178580;
+    border: solid 2px #63a4a0;
     margin: 20px;
 }
 
 button:hover{
     cursor: pointer;
-    background-color: #58e3dc;
+    background-color: #8acdc8;
 }
 
 button:focus {
@@ -44,6 +46,8 @@ button:focus {
 button:active {
     background-color: #21b0a9;
 }
+
+
 
 .hidden {
     display: none;

@@ -70,7 +70,7 @@ function getQuestion() {
     currentQuestion.choices.forEach(choice => {
         let choiceNode = document.createElement("button");
 
-        choiceNode.setAttribute("value", choice);
+        choiceNode.setAttribute("value", choice, "id", "choice");
 
         choiceNode.textContent = choice;
 
