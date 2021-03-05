@@ -16,7 +16,6 @@ let highScores = document.querySelector("#high-scores")
 let scoreList = document.querySelector("#score-list");
 let viewScores = document.querySelector("#view-scores");
 
-
 // Starting variables 
 let timeLeft = 89; // Starting amount of time when quiz begins
 let currentQuestionIndex = 0; // starting point for which object in the Questions array will display at the start of the quiz, referenced in getQuestion function
@@ -26,6 +25,7 @@ let scoresArray = [];
 // Event listeners
 startButton.addEventListener("click", startQuiz);
 submitButton.addEventListener("click", submitScore);
+viewScores.addEventListener("click", highScoresPage);
 
 // Countdown timer function
 function countdown() {
@@ -70,8 +70,6 @@ function getQuestion() {
         choiceNode.onclick = questionClick;
 
         choicesEl.appendChild(choiceNode); // display answer choices on the page
-
-        console.log(score);
     })
 
 }
@@ -124,11 +122,9 @@ function submitScore() {
         initials: initials.value.toUpperCase().trim(),
         score: score
     }
-
     if (personScore.initials === "") {
         return;
     }
-
 
     if (JSON.parse(localStorage.getItem("Scores"))) {
         scoresArray = JSON.parse(localStorage.getItem("Scores"));
@@ -146,8 +142,6 @@ function highScoresPage() {
     quizComplete.setAttribute("class", "hidden");
     viewScores.setAttribute("class", "hidden")
     timerEl.setAttribute("class", "hidden");
-
-
     homeButton.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
     storeScores();
@@ -156,24 +150,18 @@ function highScoresPage() {
 function renderScores() {
     scoreList.innerHTML = "";
 
-    if (scoresArray !== []) {
-        for (let i = 0; i < scoresArray.length; i++) {
-            let li = document.createElement("li");
-            li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
-            li.setAttribute("data-index", i);
-            scoreList.appendChild(li);
-        }
+    for (let i = 0; i < scoresArray.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
+        li.setAttribute("data-index", i);
+        scoreList.appendChild(li);
     }
 }
 
 function init() {
-
-    if (scoresArray !== []) {
-
-        if (JSON.parse(localStorage.getItem("Scores"))) {
-            scoresArray = JSON.parse(localStorage.getItem("Scores"));
-        }
-    } scoreList.textContent = "Your scores will appear once you have taken the quiz."
+    if (JSON.parse(localStorage.getItem("Scores"))) {
+        scoresArray = JSON.parse(localStorage.getItem("Scores"));
+    }
 }
 
 function storeScores() {
