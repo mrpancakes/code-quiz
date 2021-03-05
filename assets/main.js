@@ -1,12 +1,11 @@
 // DOM Elements
-let homeButton = document.querySelector("#home");
-let timerEl = document.querySelector("#timer");
+let homeLink = document.querySelector("#home");
 let homeScreen = document.querySelector("#home-screen");
+let timerEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-quiz");
 let quizQuestions = document.querySelector("#quiz");
 let titleEl = document.querySelector("#question-title");
 let choicesEl = document.querySelector("#choices");
-let questionEl = document.querySelector("#choices");
 let feedbackEl = document.querySelector("#feedback");
 let quizComplete = document.querySelector("#quiz-complete");
 let finalScore = document.querySelector("#final-score");
@@ -26,6 +25,10 @@ let scoresArray = [];
 startButton.addEventListener("click", startQuiz);
 submitButton.addEventListener("click", submitScore);
 viewScores.addEventListener("click", highScoresPage);
+homeLink.addEventListener("click", function refreshPage(){
+    window.location.reload();
+})
+
 
 // Countdown timer function
 function countdown() {
@@ -49,7 +52,7 @@ function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
     viewScores.setAttribute("class", "hidden"); // Hides View Scores while the quiz is in progress
-    homeButton.setAttribute("class", "visible"); // Shows the Home link in the header
+    homeLink.setAttribute("class", "visible"); // Shows the Home link in the header
     countdown();
     getQuestion();
 }
@@ -76,6 +79,7 @@ function getQuestion() {
 
 function questionClick() {
 
+    // if the user's choice does not equal the correct answer, deduct 10 sec and flash "incorrect" block...
     if (this.value !== questions[currentQuestionIndex].answer) {
         timeLeft -= 10;
 
@@ -84,15 +88,16 @@ function questionClick() {
         }
 
         timeLeft.textContent = timeLeft;
-        feedbackEl.setAttribute("class", "incorrect");
-        feedbackEl.textContent = "Incorrect";
-
+        feedbackEl.textContent = "Incorrect"; // Adds the the text "Incorrect" to this element in the HTML
+        feedbackEl.setAttribute("class", "incorrect"); // Adds the "Incorrect" class to the element in HTML, which has a red background color
+        
     } else {
-        feedbackEl.setAttribute("class", "correct");
-        feedbackEl.textContent = "Correct!";
+        feedbackEl.textContent = "Correct!"; // Adds the the text "Correct!"" to this element in the HTML
+        feedbackEl.setAttribute("class", "correct"); // Adds the "Correct" class to the element in HTML, which has a green background color
         score += 20;
     }
 
+    // Timeout function clears out the Feedback elements after one second
     setTimeout(function () {
         feedbackEl.setAttribute("class", "");
         feedbackEl.textContent = "";
@@ -142,7 +147,7 @@ function highScoresPage() {
     quizComplete.setAttribute("class", "hidden");
     viewScores.setAttribute("class", "hidden")
     timerEl.setAttribute("class", "hidden");
-    homeButton.setAttribute("class", "visible")
+    homeLink.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
     storeScores();
 }

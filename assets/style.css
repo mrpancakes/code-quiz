@@ -145,26 +145,15 @@ button#submit {
 }
 
 
-/* Large tablets/screens */
-@media screen and (max-width: 992px) {
-    
-    }
-   
-  
-  /* Tablets & large smart phones */
-  @media screen and (max-width: 768px) {
-    
-    
-  }
-
-  /* Small smartphones */
-  @media screen and (max-width: 576px) {
+/* Small smartphones */
+@media screen and (max-width: 576px) {
     body {
         width: 80%;
     }
     
     header {
         justify-content: center;
+        flex-wrap: wrap;
         margin-bottom: 0px;
     }
 
