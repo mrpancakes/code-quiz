@@ -119,7 +119,7 @@ function endQuiz() {
 }
 
 function submitScore() {
-   
+
     let personScore = {
         initials: initials.value.toUpperCase().trim(),
         score: score
@@ -136,40 +136,44 @@ function submitScore() {
     scoresArray.push(personScore);
 
     highScoresPage();
-    
+
 }
 
 // Directs you to the High Scores page. Also used in the HTML onClick for the "View High Scores" link.
-function highScoresPage(){
+function highScoresPage() {
     quizQuestions.setAttribute("class", "hidden");
     homeScreen.setAttribute("class", "hidden");
     quizComplete.setAttribute("class", "hidden");
     viewScores.setAttribute("class", "hidden")
     timerEl.setAttribute("class", "hidden");
-    
+
 
     homeButton.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
     storeScores();
-
-    console.log(scoresArray);
 }
 
 function renderScores() {
     scoreList.innerHTML = "";
-    console.log(scoresArray);
-    for (let i = 0; i < scoresArray.length; i++) {
-        let li = document.createElement("li");
-        li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
-        li.setAttribute("data-index", i);
-        scoreList.appendChild(li);
+
+    if (scoresArray !== []) {
+        for (let i = 0; i < scoresArray.length; i++) {
+            let li = document.createElement("li");
+            li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
+            li.setAttribute("data-index", i);
+            scoreList.appendChild(li);
+        }
     }
 }
 
 function init() {
-    if (JSON.parse(localStorage.getItem("Scores"))) {
-        scoresArray = JSON.parse(localStorage.getItem("Scores"));
-    }
+
+    if (scoresArray !== []) {
+
+        if (JSON.parse(localStorage.getItem("Scores"))) {
+            scoresArray = JSON.parse(localStorage.getItem("Scores"));
+        }
+    } scoreList.textContent = "Your scores will appear once you have taken the quiz."
 }
 
 function storeScores() {
