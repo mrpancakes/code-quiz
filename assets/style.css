@@ -87,9 +87,7 @@ li:nth-child(even) {
     background-color: #C38D9E;
 }
 
-#home-screen, #quiz {
-    margin-top: 80px;
-}
+
 
 .score {
     font-size: 3rem;
@@ -100,14 +98,15 @@ li:nth-child(even) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 30px;
+    align-items: center;
+    margin-top: 50px;
 }
 
 input {
     height: 3rem;
     font-size: 2rem;
     width: 200px;
-    margin-top: 20px;
+    margin-right: 10px;
 }
 
 .feedback {
@@ -118,6 +117,15 @@ input {
 
 button#retake-quiz {
     background-color: #86ccca;
+}
+
+#home-screen, #quiz {
+    margin-top: 80px;
+}
+
+button#submit {
+    margin: 0px;
+    margin-left: 10px;
 }
 
 #quiz {
@@ -170,6 +178,11 @@ button#retake-quiz {
 
     #quiz {
         margin-top: 40px;
+    }
+
+    input, button#submit {
+        margin: 0px;
+        margin-bottom: 20px;
     }
 
   }

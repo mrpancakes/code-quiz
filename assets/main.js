@@ -27,15 +27,6 @@ let scoresArray = [];
 startButton.addEventListener("click", startQuiz);
 submitButton.addEventListener("click", submitScore);
 
-
-
-function CheckRequest(){
-    console.log("hey");
-
-}
-
-
-
 // Countdown timer function
 function countdown() {
     let timeInterval = setInterval(function () {
@@ -125,7 +116,6 @@ function endQuiz() {
     finalScore.setAttribute("data-score", finalScore);
     quizQuestions.setAttribute("style", "display: none;");
     quizComplete.setAttribute("class", "visisble");
-
 }
 
 function submitScore() {
@@ -174,7 +164,6 @@ function renderScores() {
         li.setAttribute("data-index", i);
         scoreList.appendChild(li);
     }
-    scoresArray.sort();
 }
 
 function init() {
