@@ -9,3 +9,5 @@
 * When a question is answered:
     * If correct, next question appears & 10 pts are added to your score
     * If wrong, timer decrements 10 seconds, no pts added to your score
+
+    * Used .toUpperCase() and .trim() in personScore.initials so that it coverts it to uppercase and removes any surrounding blank spaces 

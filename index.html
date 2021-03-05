@@ -7,44 +7,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/reset.css">
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Code Quiz Challenge</title>
+    <title >Code Quiz Challenge</title>
 </head>
 
 <body>
     <header>
-        <a href="#" id=view-scores>View High Scores</a>
-        <div>Time Left: <span id="timer">90 seconds</span></div>
+        <button onClick="history.go(0)" class="hidden" id="home">Home</button>
+        <a href="#" id=view-scores onclick="return highScoresPage()">View High Scores</a>
+        <div id="timer">
+            Time Left: 90 seconds</span>
+        </div>
     </header>
 
-    <main class="visible" id="home-screen">
-        <h1>Coding Quiz Challenge</h1>
-        <div>Try to answer the following code-related questions in the alloted time. Incorrect answers will penalize
-            your
-            score/time by ten seconds!</div>
-        <button id="start-quiz">Start Quiz</button>
+    <main>
+        <section class="visible" id="home-screen">
+            <h1>Coding Quiz Challenge</h1>
+            <div>Try to answer the following code-related questions in the alloted time. Incorrect answers will penalize
+                your
+                score/time by ten seconds!</div>
+            <button id="start-quiz">Start Quiz</button>
+        </section>
+        <section class="hidden" id="high-scores">
+                <h1>High Scores</h1>
+                <ul id="score-list">
+                </ul>
+            </section>
+
+        <section class="hidden" id="quiz">
+            <h2 id="question-title"></h2>
+            <div id="choices"></div>
+            <div class="" id="feedback"></div>
+        </section>
+
+        <section class="hidden" id="quiz-complete">
+            <h1>Done! Here's how you did:</h1>
+            <div class="score"><span id="final-score"></span>/100</div>
+            <div class="submit-score">
+                <input type="text" id="initials" name="initials" placeholder="Insert initials" value="" maxlength="3">
+                <button id="submit">Submit Score</button>
+            </div>
+        </section>
+
+        
     </main>
-
-    <section class="hidden" id="quiz">
-        <h2 id="question-title"></h2>
-        <div id="choices"></div>
-        <div class="" id="feedback"></div>
-    </section>
-
-    <section class="hidden" id="quiz-complete">
-        <h1>Done! Here's how you did:</h1>
-        <div class="score"><span id="final-score"></span>/100</div>
-        <div class="submit-score">
-            <input type="text" id="initials" name="initials" placeholder="Insert initials" value="" maxlength="3">
-            <button id="submit">Submit Score</button>
-        </div>
-    </section>
-
-    <section class="hidden" id="high-scores">
-        <h1>High Scores</h1>
-        <ul id="score-list">
-        </ul>
-        <button id="start-quiz">Retake Quiz</button>
-    </section>
 </body>
 
 <script src="./assets/main.js"></script>

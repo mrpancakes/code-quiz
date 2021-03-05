@@ -1,4 +1,5 @@
 // DOM Elements
+let homeButton = document.querySelector("#home");
 let timerEl = document.querySelector("#timer");
 let homeScreen = document.querySelector("#home-screen");
 let startButton = document.querySelector("#start-quiz");
@@ -13,11 +14,12 @@ let initials = document.querySelector("#initials");
 let submitButton = document.querySelector("#submit");
 let highScores = document.querySelector("#high-scores")
 let scoreList = document.querySelector("#score-list");
+let viewScores = document.querySelector("#view-scores");
 
 
 // Starting variables 
 let timeLeft = 89; // Starting amount of time when quiz begins
-let currentQuestionIndex = 0; // starting point for which object in the Questions array we'll display at the start of the quiz, Referenced in getQuestion function
+let currentQuestionIndex = 0; // starting point for which object in the Questions array will display at the start of the quiz, referenced in getQuestion function
 let score = 0;
 let scoresArray = [];
 
@@ -25,17 +27,26 @@ let scoresArray = [];
 startButton.addEventListener("click", startQuiz);
 submitButton.addEventListener("click", submitScore);
 
+
+
+function CheckRequest(){
+    console.log("hey");
+
+}
+
+
+
 // Countdown timer function
 function countdown() {
     let timeInterval = setInterval(function () {
         if (timeLeft > 1) {
-            timerEl.textContent = `${timeLeft} seconds`;
+            timerEl.textContent = `Time Left: ${timeLeft} seconds`;
             timeLeft--;
         } else if (timeLeft === 1) {
-            timerEl.textContent = `${timeLeft} second`;
+            timerEl.textContent = `Time Left: ${timeLeft} second`;
             timeLeft--;
         } else {
-            timerEl.innerHTML = "<strong>0 seconds</strong>";
+            timerEl.innerHTML = "Time Left: <strong>0 seconds</strong>";
             clearInterval(timeInterval);
             endQuiz(); // call some other function, maybe the "game over" function
         }
@@ -46,10 +57,8 @@ function countdown() {
 function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
-
     countdown();
     getQuestion();
-
 }
 
 function getQuestion() {
@@ -83,7 +92,7 @@ function questionClick() {
             timeLeft = 0;
         }
 
-        timerEl.textContent = timeLeft;
+        timeLeft.textContent = timeLeft;
         feedbackEl.setAttribute("class", "incorrect");
         feedbackEl.textContent = "Incorrect";
 
@@ -118,7 +127,7 @@ function endQuiz() {
 }
 
 function submitScore() {
-
+   
     let personScore = {
         initials: initials.value.toUpperCase().trim(),
         score: score
@@ -127,12 +136,25 @@ function submitScore() {
     if (personScore.initials === "") {
         return;
     }
+
+
     if (JSON.parse(localStorage.getItem("Scores"))) {
         scoresArray = JSON.parse(localStorage.getItem("Scores"));
     }
     scoresArray.push(personScore);
 
+    highScoresPage();
+    
+}
+
+// Directs you to the High Scores page. Also used in the HTML onClick for the "View High Scores" link.
+function highScoresPage(){
+    homeScreen.setAttribute("class", "hidden");
     quizComplete.setAttribute("class", "hidden");
+    viewScores.setAttribute("class", "hidden")
+    timerEl.setAttribute("class", "hidden");
+
+    homeButton.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
     storeScores();
 
@@ -140,15 +162,15 @@ function submitScore() {
 }
 
 function renderScores() {
-
     scoreList.innerHTML = "";
     console.log(scoresArray);
     for (let i = 0; i < scoresArray.length; i++) {
         let li = document.createElement("li");
-        li.textContent = `${scoresArray[i].initials} ${scoresArray[i].score}`;
+        li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
         li.setAttribute("data-index", i);
         scoreList.appendChild(li);
     }
+    scoresArray.sort();
 }
 
 function init() {
