@@ -57,6 +57,8 @@ function countdown() {
 function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
+    viewScores.setAttribute("class", "hidden");
+    homeButton.setAttribute("class", "visible");
     countdown();
     getQuestion();
 }
@@ -149,10 +151,12 @@ function submitScore() {
 
 // Directs you to the High Scores page. Also used in the HTML onClick for the "View High Scores" link.
 function highScoresPage(){
+    quizQuestions.setAttribute("class", "hidden");
     homeScreen.setAttribute("class", "hidden");
     quizComplete.setAttribute("class", "hidden");
     viewScores.setAttribute("class", "hidden")
     timerEl.setAttribute("class", "hidden");
+    
 
     homeButton.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
