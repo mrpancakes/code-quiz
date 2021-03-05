@@ -11,12 +11,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin: 40px;
 }
 
 header#high-scores{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin: 40px;
 }
 
@@ -24,8 +26,6 @@ h1 {
     font-size: 3rem;
     margin-bottom: 40px;
 }
-
-
 
 button {
     background-color: #a4e0dd;
@@ -98,6 +98,7 @@ li:nth-child(even) {
 
 .submit-score {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 30px;
 }
@@ -130,3 +131,45 @@ button#retake-quiz {
     font-size: 1.5rem;
     margin-bottom: 30px;
 }
+
+#score-list {
+    padding: 0px;
+}
+
+
+/* Large tablets/screens */
+@media screen and (max-width: 992px) {
+    
+    }
+   
+  
+  /* Tablets & large smart phones */
+  @media screen and (max-width: 768px) {
+    
+    
+  }
+
+  /* Small smartphones */
+  @media screen and (max-width: 576px) {
+    body {
+        width: 80%;
+    }
+    
+    header {
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #home-screen, #quiz, #quiz-complete, #high-scores {
+        margin-top: 35px;
+    }
+
+    #quiz {
+        margin-top: 40px;
+    }
+
+  }

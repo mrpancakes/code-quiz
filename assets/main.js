@@ -57,8 +57,8 @@ function countdown() {
 function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
-    viewScores.setAttribute("class", "hidden");
-    homeButton.setAttribute("class", "visible");
+    viewScores.setAttribute("class", "hidden"); // Hides View Scores while the quiz is in progress
+    homeButton.setAttribute("class", "visible"); // Shows the Home link in the header
     countdown();
     getQuestion();
 }
