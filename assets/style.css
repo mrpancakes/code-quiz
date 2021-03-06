@@ -167,4 +167,9 @@ button#submit {
         margin-bottom: 20px;
     }
 
+    #choices {
+        display: flex;
+        flex-direction: column;
+    }
+
   }

@@ -8,12 +8,12 @@ This application is a quiz which tests the user's knowledge of JavaScript. By in
 * When Start button is clicked:
     * The Main section is hidden
     * The timer function is called
-    * A random quiz question appears
+    * The quiz function begings
 
 * When a question is answered:
-    * If correct, the "Correct!" feedback block appears, then next question appears, and 20 pts are added to your score.
-    * If wrong, timer decrements by 10 seconds, the "Inorrect" feedback block appears, then next question appears.
+    * If correct, the "Correct!" feedback block appears, the next question appears, and 20 pts are added to your score.
+    * If wrong, the timer decrements by 10 seconds, the "Incorrect" feedback block appears, and the next question appears.
 
-* If the timer reaches 0, the quiz is over and your score is display.
+* If the timer reaches 0, the quiz is over and your score is displayed.
 
 * Used .toUpperCase() and .trim() in personScore.initials so that it coverts it to uppercase and removes any surrounding blank spaces
