@@ -27,6 +27,18 @@ h1 {
     margin-bottom: 40px;
 }
 
+li {
+    font-size: 1.8rem;
+    padding: 18px;
+}
+
+li:nth-child(odd) {
+    background-color: #E8A87C;
+}
+li:nth-child(even) {
+    background-color: #C38D9E;
+}
+
 button {
     background-color: #a4e0dd;
     padding: 15px;
@@ -48,7 +60,12 @@ button:active {
     background-color: #21b0a9;
 }
 
-
+input {
+    height: 3rem;
+    font-size: 2rem;
+    width: 200px;
+    margin-right: 10px;
+}
 
 .hidden {
     display: none;
@@ -72,22 +89,7 @@ button:active {
     font-size: 1.5rem;
     padding: 15px;
     border-radius: 5px;
-    
 }
-
-li {
-    font-size: 1.8rem;
-    padding: 18px;
-}
-
-li:nth-child(odd) {
-    background-color: #E8A87C;
-}
-li:nth-child(even) {
-    background-color: #C38D9E;
-}
-
-
 
 .score {
     font-size: 3rem;
@@ -102,21 +104,10 @@ li:nth-child(even) {
     margin-top: 50px;
 }
 
-input {
-    height: 3rem;
-    font-size: 2rem;
-    width: 200px;
-    margin-right: 10px;
-}
-
 .feedback {
     display: flex;
     justify-content: center;
     width: 200px;
-}
-
-button#retake-quiz {
-    background-color: #86ccca;
 }
 
 #home-screen, #quiz {
@@ -152,8 +143,10 @@ button#submit {
     }
     
     header {
-        justify-content: center;
+        display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
         margin-bottom: 0px;
     }
 
