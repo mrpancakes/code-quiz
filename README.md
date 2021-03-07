@@ -19,11 +19,11 @@ This application is a quiz which tests the user's knowledge of JavaScript. By in
 * Once the quiz is complete or the timer reaches 0, the Quiz element is hidden and the Results element is shown. The user's score is presented, and they can submit their initials. The Scores element is then shown, displaying locally stored scores.
     * I used .toUpperCase() and .trim() in personScore.initials so that it coverts the user's initials to uppercase and removes any surrounding blank spaces.
 
-* The user can retake the quiz by clicking Home in the nav, which refreshes application.
+* The user can retake the quiz by clicking Home in the nav, which refreshes the application.
 
 * From the Home screen, the user can toggle to the Scores view by clicking "View Your Scores" in the nav. 
 
-* Used media queries to make the quiz mobile friendly.
+* I used media queries to make the quiz mobile friendly.
 
 ### Live Application
 You can view the live application [here](https://mrpancakes.github.io/homework-04-code-quiz/), along with the GitHub repo [here](https://github.com/mrpancakes/homework-04-code-quiz).
