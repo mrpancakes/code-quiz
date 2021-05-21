@@ -45,9 +45,9 @@ function countdown() {
             endQuiz(); // call some other function, maybe the "game over" function
         }
     }, 1000)
-}
+};
 
-// Use this to cycle through and display the questions with answers. Should hide the "main" section of the page and show the quiz questions
+// Use this to cycle through and display the questions with answers. It should hide the "main" section of the page and show the quiz questions
 function startQuiz() {
     homeScreen.setAttribute("class", "hidden"); // Hides the homescreen main paragraph
     quizQuestions.setAttribute("class", "visible"); // Makes the quiz section of the page visible
@@ -55,7 +55,7 @@ function startQuiz() {
     homeLink.setAttribute("class", "visible"); // Shows the Home link in the header
     countdown();
     getQuestion();
-}
+};
 
 function getQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
@@ -73,19 +73,18 @@ function getQuestion() {
         choiceNode.onclick = questionClick;
 
         choicesEl.appendChild(choiceNode); // display answer choices on the page
-    })
-
-}
+    });
+};
 
 function questionClick() {
 
-    // if the user's choice does not equal the correct answer, deduct 10 sec and flash "incorrect" block...
+    // if the user's choice does not equal the correct answer, deduct 10 sec and flash "incorrect" block
     if (this.value !== questions[currentQuestionIndex].answer) {
         timeLeft -= 10;
 
         if (timeLeft <= 0) {
             timeLeft = 0;
-        }
+        };
 
         timeLeft.textContent = timeLeft;
         feedbackEl.textContent = "Incorrect"; // Adds the the text "Incorrect" to this element in the HTML
@@ -95,7 +94,7 @@ function questionClick() {
         feedbackEl.textContent = "Correct!"; // Adds the the text "Correct!"" to this element in the HTML
         feedbackEl.setAttribute("class", "correct"); // Adds the "Correct" class to the element in HTML, which has a green background color
         score += 20;
-    }
+    };
 
     // Timeout function clears out the Feedback elements after one second
     setTimeout(function () {
@@ -109,9 +108,8 @@ function questionClick() {
         endQuiz();
     } else {
         getQuestion();
-    }
-
-}
+    };
+};
 
 function endQuiz() {
     timeLeft = 0;
@@ -119,26 +117,27 @@ function endQuiz() {
     finalScore.setAttribute("data-score", finalScore);
     quizQuestions.setAttribute("style", "display: none;");
     quizComplete.setAttribute("class", "visisble");
-}
+};
 
 function submitScore() {
 
     let personScore = {
         initials: initials.value.toUpperCase().trim(),
         score: score
-    }
+    };
+
     if (personScore.initials === "") {
         return;
-    }
+    };
 
     if (JSON.parse(localStorage.getItem("Scores"))) {
         scoresArray = JSON.parse(localStorage.getItem("Scores"));
-    }
+    };
+
     scoresArray.push(personScore);
 
     highScoresPage();
-
-}
+};
 
 // Directs you to the High Scores page. Also used in the HTML onClick for the "View High Scores" link.
 function highScoresPage() {
@@ -150,7 +149,7 @@ function highScoresPage() {
     homeLink.setAttribute("class", "visible")
     highScores.setAttribute("class", "visible");
     storeScores();
-}
+};
 
 function renderScores() {
     scoreList.innerHTML = "";
@@ -160,19 +159,19 @@ function renderScores() {
         li.textContent = `${scoresArray[i].initials}: ${scoresArray[i].score}/100`;
         li.setAttribute("data-index", i);
         scoreList.appendChild(li);
-    }
-}
+    };
+};
 
 function init() {
     if (JSON.parse(localStorage.getItem("Scores"))) {
         scoresArray = JSON.parse(localStorage.getItem("Scores"));
-    }
-}
+    };
+};
 
 function storeScores() {
     localStorage.setItem("Scores", JSON.stringify(scoresArray));
     renderScores();
-}
+};
 
 
 // Array of questions/answers
@@ -202,6 +201,6 @@ let questions = [
         choices: ["10 / 5", "5 / 10", "10 % 5", "10 // 5"],
         answer: "10 / 5"
     }
-]
+];
 
 init();
