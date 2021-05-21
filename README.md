@@ -1,8 +1,8 @@
-# homework-04-code-quiz
+# Code Quiz
 
 ## Description
 
-This application is a quiz which tests the user's knowledge of JavaScript. By initiating the quiz, the 90 second timer begins ticking. Which each wrong answer, 10 seconds are deducted from the timer. Once complete, the score is displayed and the user can submit their initials/score to local storage. All of the user's past scores are then displayed once they submit their initials.
+This application is a online quiz which tests the user's knowledge of JavaScript. By initiating the quiz, the 90 second timer begins ticking. With each wrong answer, 10 seconds are deducted from the timer. Once complete, the score is displayed and the user can submit their initials/score to local storage. All of the user's past scores are then displayed once they submit their initials.
 
 ### Application Functionality 
 * When Start button is clicked:
